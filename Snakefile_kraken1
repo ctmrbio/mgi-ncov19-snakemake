@@ -1,0 +1,27 @@
+# vim: syntax=python expandtab ts=4
+rule extract_cov19:
+    input:
+        read1="input/{sample}.1.fq.gz",
+        read2="input/{sample}.2.fq.gz",
+    output:
+        read1="output_dir/01.cov19_reads/{sample}.1.fq.gz",
+        read2="output_dir/01.cov19_reads/{sample}.2.fq.gz",
+    threads:
+        8
+    conda:
+        "../envs/qc_assembly.yaml"
+    params:
+        db=config["db_path"],
+    shell:
+        """
+        kraken \
+            --db {params.db} \
+            --threads {threads} \
+            --gzip-compressed \
+            --only-classified-out \
+            --fastq-input \
+            --paired \
+            {input.read1} {input.read2} \
+            --output {output.kraken} \
+        """
+    
