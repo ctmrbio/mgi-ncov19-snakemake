@@ -149,7 +149,7 @@ rule assembly:
             stdout="output_dir/soapnuke/{sample}.stdout.log",
             stderr="output_dir/soapnuke/{sample}.stderr.log",
         threads:
-            8
+            15
         shell:
             """
             spades.py \
