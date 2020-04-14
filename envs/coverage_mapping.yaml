@@ -1,0 +1,9 @@
+channels:
+  - bioconda
+  - conda-forge
+  - BioBuilds
+dependencies:
+  - bwa = 0.7.17
+  - picard = 2.22.3 
+  - samtools = 1.10
+  - pilon = 1.23 
